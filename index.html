@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login and Registration</title>
+  <style>
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   }
+
+   body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+   }
+
+   #container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1000px;
+    gap: 20px;
+    opacity: 0.9;
+   }
+
+   .form-box {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+   }
+
+   .form-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+   }
+
+   h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #764ba2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    animation: fadeIn 1s ease-in-out;
+   }
+
+   input[type="text"],
+   input[type="password"] {
+    width: calc(100% - 32px);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+   }
+
+   input[type="text"]:focus,
+   input[type="password"]:focus {
+    border-color: #764ba2;
+    outline: none;
+   }
+
+   input[type="checkbox"] {
+    margin-right: 8px;
+   }
+
+   label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #764ba2;
+    animation: fadeIn 1s ease-in-out;
+   }
+
+   button {
+    background-color: #764ba2;
+    color: #fff;
+    padding: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    transition: background-color 0.4s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+   }
+
+   button:hover {
+    background-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+   }
+
+   button:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+   }
+
+   p {
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+    animation: fadeIn 1s ease-in-out;
+   }
+
+   p.success {
+    color: #4caf50;
+   }
+
+   p.error {
+    color: #f44336;
+   }
+
+   /* Keyframes for Animations */
+   @keyframes fadeIn {
+    from {
+     opacity: 0;
+     transform: translateY(-20px);
+    }
+    to {
+     opacity: 1;
+     transform: translateY(0);
+    }
+   }
+
+   /* Media Queries for Responsiveness */
+   @media (max-width: 768px) {
+    #container {
+     flex-direction: column;
+     gap: 30px;
+    }
+
+    .form-box {
+     width: 100%;
+     max-width: none;
+    }
+   }
+
+   @media (max-width: 480px) {
+    input[type="text"],
+    input[type="password"] {
+     font-size: 15px;
+     padding: 12px 14px;
+    }
+
+    button {
+     font-size: 16px;
+     padding: 14px;
+    }
+
+    h2 {
+     font-size: 24px;
+    }
+   }
+  </style>
+ </head>
+ <body>
+  <div id="container">
+   <!-- Login Form -->
+   <div id="login_form" class="form-box">
+    <h2>Login</h2>
+    <form id="login_form_tag">
+     <input
+      type="text"
+      id="login_username"
+      name="username"
+      placeholder="Username"
+      required
+     />
+     <input
+      type="password"
+      id="login_password"
+      name="password"
+      placeholder="Password"
+      required
+     />
+     <label
+      ><input type="checkbox" id="login_show_password" /> Show Password</label
+     >
+     <button type="submit" id="login_btn">Login</button>
+     <p id="login_message"></p>
+    </form>
+   </div>
+
+   <!-- Registration Form -->
+   <div id="register_form" class="form-box">
+    <h2>Register</h2>
+    <form id="register_form_tag">
+     <input
+      type="text"
+      id="register_username"
+      name="username"
+      placeholder="Username"
+      required
+     />
+     <input
+      type="password"
+      id="register_password"
+      name="password"
+      placeholder="Password"
+      required
+     />
+     <label
+      ><input type="checkbox" id="register_show_password" /> Show
+      Password</label
+     >
+     <input
+      type="password"
+      id="register_confirm_password"
+      name="confirm_password"
+      placeholder="Re-enter Password"
+      required
+     />
+     <input
+      type="text"
+      id="register_name"
+      name="name"
+      placeholder="Name"
+      required
+     />
+     <input
+      type="text"
+      id="register_phone"
+      name="phone"
+      placeholder="Phone Number"
+      required
+     />
+     <button type="submit" id="register_btn">Register</button>
+     <p id="register_message"></p>
+    </form>
+   </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const togglePasswordVisibility = (checkboxId, passwordId) => {
+                $(`#${checkboxId}`).change(function() {
+                    const passwordField = $(`#${passwordId}`);
+                    passwordField.attr('type', this.checked ? 'text' : 'password');
+                });
+            };
+
+            $('#login_form_tag').on('submit', function(event) {
+                event.preventDefault();
+                const formData = {
+                    username: $('#login_username').val(),
+                    password: $('#login_password').val()
+                };
+
+                $.ajax({
+                    url: '/index',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ action: 'login', ...formData }),
+                    success: function(data) {
+                        $('#login_message').html(`<p class="${data.status}">${data.message}</p>`);
+                        if (data.status === 'success') {
+                           // window.location.href = '/'; // Redirect on successful login
+                        }
+                    },
+                    error: function(xhr) {
+                        const message = xhr.responseJSON.message || 'An error occurred';
+                        $('#login_message').html(`<p class="error">${message}</p>`);
+                    }
+                });
+            });
+
+            $('#register_form_tag').on('submit', function(event) {
+                event.preventDefault();
+                const formData = {
+                    username: $('#register_username').val(),
+                    password: $('#register_password').val(),
+                    confirm_password: $('#register_confirm_password').val(),
+                    name: $('#register_name').val(),
+                    phone: $('#register_phone').val()
+                };
+
+                $.ajax({
+                    url: '/index',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ action: 'register', ...formData }),
+                    success: function(data) {
+                        $('#register_message').html(`<p class="${data.status}">${data.message}</p>`);
+                        if (data.status === 'success') {
+                            setTimeout(() => window.location.href = '/', 2000); // Redirect after registration
+                        }
+                    },
+                    error: function(xhr) {
+                        const message = xhr.responseJSON.message || 'An error occurred';
+                        $('#register_message').html(`<p class="error">${message}</p>`);
+                    }
+                });
+            });
+
+            togglePasswordVisibility('login_show_password', 'login_password');
+            togglePasswordVisibility('register_show_password', 'register_password');
+        });
+    </script>
+</body>
+</html>
